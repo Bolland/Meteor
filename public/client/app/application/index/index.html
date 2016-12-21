@@ -1,0 +1,113 @@
+<template name="index_index">
+
+    <section class="search-bar">
+        {{> search}}
+    </section>
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{> project}}
+                    {{> unassignedEmployees}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</template>
+
+<template name="project">
+
+    {{#each projects}}
+        <div class="venture-wall panel panel-default pull-left">
+            <div class="panel-heading">
+                <div class="full-circle project">
+                    <span class="centered-circle-text">{{name}}</span>
+                </div>
+                {{#if isLoggedInUser}}
+                    {{#if isInRole 'staff'}}
+                        {{#if isCurrentUserInProject}}
+                            {{> removeAction}}
+                        {{else}}
+                            {{> addAction}}
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            </div>
+            <div class="panel-body">
+
+                {{> projectCoach}}
+
+                {{#each getEmployees}}
+                    {{> employee}}
+                {{/each}}
+
+            </div>
+        </div>
+    {{/each}}
+
+</template>
+
+<template name="projectCoach">
+
+    <div style="background-color:#f5f5f5;padding:14px;margin:0px;">
+        <img class="image-circle vwall-member coach {{projectCoach._id}} {{getSearchResultMark 'search-result-highlight' ''}}" src="/images/employees/thumbs/{{projectCoach.profile.thumbnail}}" />
+    </div>
+
+</template>
+
+<template name="employee">
+    <div style="background-color:white;padding:14px;margin:0px;">
+        <img class="image-circle vwall-member employee {{this.employee._id}} {{getSearchResultMark 'search-result-highlight' ''}}" src="{{getEmployeeImagePath}}" data-toggle="tooltip" data-placement="right" title="Added: {{formatDateTime this.dateAdded}}" />
+        <div class="{{getCurrentUserMark 'dot current-user' 'dot'}}"></div>
+    </div>
+</template>
+
+<template name="unassignedEmployees">
+
+    <div class="venture-wall panel panel-default pull-right">
+        <div class="panel-heading">
+            <div class="full-circle project">
+                <span class="centered-circle-text">Unassigned</span>
+            </div>
+        </div>
+        <div class="panel-body">
+            {{#each getUnassignedEmployees}}
+                {{> unassignedEmployee}}
+            {{/each}}
+        </div>
+    </div>
+
+</template>
+
+<template name="unassignedEmployee">
+    <div style="background-color:white;padding:14px;margin:0px;">
+        <img class="image-circle vwall-member employee {{this._id}} {{getSearchResultMark 'search-result-highlight' ''}}" src="{{getEmployeeImagePath}}" />
+    </div>
+</template>
+
+<template name="removeAction">
+
+    <a class="full-circle action-button action-remove" href="#">
+        <i class="glyphicon glyphicon-pushpin icon-flipped"></i>
+    </a>
+
+</template>
+
+<template name="addAction">
+
+    <a class="full-circle action-button action-add" href="#">
+        <i class="glyphicon glyphicon-pushpin"></i>
+    </a>
+
+</template>
+
+
+
+
+
+
+

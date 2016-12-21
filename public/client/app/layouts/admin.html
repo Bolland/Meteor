@@ -1,0 +1,24 @@
+<template name="layout_admin">
+
+    <div id="wrapper">
+
+        <header>
+            {{> loginButtons }}
+            <h2>ProjectA - Venture Wall - Admin</h2>
+        </header>
+
+        <section id="flash-messages">
+            {{> flashMessages}}
+        </section>
+
+        <section id="content">
+            {{> yield }}
+        </section>
+
+        <footer>
+            <h5>footer</h5>
+        </footer>
+
+    </div>
+
+</template>

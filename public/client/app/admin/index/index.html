@@ -1,0 +1,212 @@
+<template name="admin_index">
+
+    <h5>Admin</h5>
+
+    <div class="row">
+
+        <div class="col-lg-3">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title"><i class="glyphicon glyphicon-user"></i><i class="glyphicon glyphicon-transfer"></i><i class="glyphicon glyphicon-user"></i> Synchronize</h5>
+                </div>
+                <div class="panel-body">
+                    {{> synchronizeUsers}}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title"><i class="glyphicon glyphicon-user"></i> Users</h5>
+                </div>
+                <div class="panel-body">
+                    {{> signedUpUsers}}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-3">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Add Project</h5>
+                </div>
+                <div class="panel-body">
+                    {{> addProjectForm}}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title"><i class="glyphicon glyphicon-pushpin"></i> Projects</h5>
+                </div>
+                <div class="panel-body">
+                    {{> projectsAdmin}}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-3">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Apply Employee to Project</h5>
+                </div>
+                <div class="panel-body">
+                    {{> connectForm}}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-3">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Acl Roles</h5>
+                </div>
+                <div class="panel-body">
+                    {{> aclRoles}}
+                </div>
+            </div>
+
+        </div>
+
+     </div>
+
+ </template>
+
+
+ <template name="projectsAdmin">
+     <ul class="list-unstyled">
+         {{#each projects}}
+             <li class="list-group-item">
+                 <strong>{{name}}</strong>
+                 <br />
+                 <small>[{{_id}}]</small>
+                 <br />
+                 {{image}}
+                 <!--
+                 <br />
+                 <img src="{{getImageUrl}}" />
+                 -->
+            </li>
+        {{/each}}
+    </ul>
+</template>
+
+<template name="synchronizeUsers">
+    <button><i class="glyphicon glyphicon-cog"></i> Synchronize Users</button>
+</template>
+
+<template name="addProjectForm">
+    <form action="#" id="add-project-form">
+        <label for="add-project-name"> Name </label>
+        <input id="add-project-name" type="text" name="projectName">
+        <br />
+        {{> coachPicker}}
+        <br /><br />
+        <button type="submit" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-plus"></i> Add Project</button>
+    </form>
+</template>
+
+<template name="employeesAdmin">
+    <ul class="list-unstyled">
+        {{#each employees}}
+        <li class="list-group-item">
+            {{#if isCoach}}
+                <span class="badge">Coach</span>
+            {{/if}}
+            <strong>{{name}}</strong> <small>[{{_id}}]</small>
+        </li>
+        {{/each}}
+    </ul>
+</template>
+
+<template name="connectForm">
+    <form action="#" id="connect-form">
+        {{> projectPicker}}
+        <br />
+        {{> employeePicker}}
+        <br /><br />
+        <button type="submit" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-link"></i> Apply Employee to Project</button>
+    </form>
+</template>
+
+<template name="coachPicker">
+
+    <label for="coachPicker"> Coach </label>
+    <select id="coachPicker" name="projectCoach">
+        <option value="">- Select Coach -</option>
+        {{#each coaches}}
+            <option value="{{_id}}">{{profile.firstname}} {{profile.lastname}}</option>
+        {{/each}}
+    </select>
+
+</template>
+
+<template name="employeePicker">
+
+    <label for="employeePicker"> Employee </label>
+    <select id="employeePicker" name="employeeId">
+        <option value="">- Select Employee -</option>
+        {{#each employees}}
+            <option value="{{_id}}">{{profile.firstname}} {{profile.lastname}}</option>
+        {{/each}}
+    </select>
+
+</template>
+
+<template name="projectPicker">
+
+    <label for="projectPicker"> Project </label>
+    <select id="projectPicker" name="projectId">
+        <option value="">- Select Project -</option>
+        {{#each projects}}
+            <option value="{{_id}}">{{name}}</option>
+        {{/each}}
+    </select>
+
+</template>
+
+<template name="aclRoles">
+
+    <ul class="list-unstyled">
+        {{#each roles}}
+            <li class="list-group-item">
+                <strong>{{name}}</strong> <small>[{{_id}}]</small>
+            </li>
+        {{/each}}
+    </ul>
+
+</template>
+
+<template name="signedUpUsers">
+
+    <ul class="list-unstyled">
+        {{#each users}}
+            <li class="list-group-item" style="font-size: 11px;">
+                <div class="pull-left">
+                    <img class="image-circle" src="{{getImagePath}}" alt="{{profile.thumbnail}}"/>
+                </div>
+                <div class="pull-left" style="margin-left: 20px;">
+                    <strong>{{getName}}</strong>
+                    <br />
+                    {{getFirstEmailAddress}}
+                    <br />
+                    {{profile.department}}
+                    <br />
+                    {{#if isCoach}}
+                        <span class="badge coach">venture coach</span>
+                    {{/if}}
+                   <!-- <small>[{{_id}}]</small> -->
+                </div>
+                <div class="clearfix"></div>
+            </li>
+        {{/each}}
+    </ul>
+
+</template>
+

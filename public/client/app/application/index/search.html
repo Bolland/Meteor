@@ -1,0 +1,60 @@
+
+<template name="search">
+
+    <div id="employeePickerBox" class="pull-right">
+        {{> searchEmployeePicker}}
+    </div>
+
+    <div id="departemntPickerBox" class="pull-right">
+        {{> searchDepartmentPicker}}
+    </div>
+
+    <!--
+    <div id="fulltextSearch" class="pull-right">
+        {{> fulltextSearch}}
+    </div>
+    -->
+
+</template>
+
+
+<template name="searchEmployeePicker">
+
+    <select id="searchEmployeePicker">
+        <option value="">- Find People -</option>
+        {{#each employees}}
+            <option value="{{_id}}">
+                {{this.profile.firstname}} {{this.profile.lastname}} {{markCoach}}
+            </option>
+        {{/each}}
+    </select>
+
+</template>
+
+<template name="searchDepartmentPicker">
+
+    <select id="searchDepartmentPicker">
+        <option value="">- Find By Department -</option>
+        {{#each departments}}
+            <option value="{{name}}">
+                {{name}}
+            </option>
+        {{/each}}
+    </select>
+
+</template>
+
+<!--
+<template name="fulltextSearch">
+
+    <div id="textSearchBox" class="pull-right">
+        <form action="#">
+            <input id="search-bar" type="text" name="search">
+            <button type="submit" class="btn btn-default btn-xs">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+        </form>
+    </div>
+
+</template>
+-->

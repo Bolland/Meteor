@@ -1,0 +1,30 @@
+<template name="layout_default">
+
+    <div id="wrapper">
+
+        <section id="pre-header">
+            {{> preHeader}}
+        </section>
+
+        <header>
+            <h2 id="main-header">
+                    <i class="glyphicon glyphicon-pushpin header-icon"></i> Project A - Venture Wall
+            </h2>
+        </header>
+
+        <section id="flash-messages">
+            {{> flashMessages}}
+        </section>
+
+        <section id="content">
+            {{> yield }}
+        </section>
+
+        <footer>
+            <h5>footer</h5>
+        </footer>
+
+    </div>
+
+</template>
+

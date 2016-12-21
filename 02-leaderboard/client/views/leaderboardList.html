@@ -1,0 +1,23 @@
+<template name="leaderboardList">
+	<h1>Leaderboard</h1>
+	<ul>
+	{{#each player}}
+		<li class="li-player {{selectedClass}}">{{name}} (Score: {{score}}) {{gender}}</li>
+	{{/each}}
+	</ul>
+	{{#if showSelectedPlayer}}
+		<p>Selected Player: {{showSelectedPlayer.name}} <input type="button" class="remove" value="Remove Player"></p>
+
+		<input type="button" class="increment" value="Add 5 points"> <input type="button" class="decrement" value="Take 5 points">
+	{{else}}
+		Please select a player by clicking on her/him.
+		<form >
+			<input class="filter-female" type="checkbox" > Female players only
+		</form>
+	{{/if}}
+
+<!-- <p>Last clicked Player Name: {{getLastClickedPlayerName}}</p>
+	<form>
+		<input type="textfield" class="textfield">
+	</form>-->
+</template>

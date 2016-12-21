@@ -1,0 +1,11 @@
+<template name="addPlayerForm">
+	<!-- only display if user is logged in -->
+	{{#if currentUser}}
+	<h2>Add Player</h2>
+	<form>
+		Name: <input type="text" id="playerName" name="playerName" placeholder="Player name" style="color:#000">
+		Score: <input type="integer" name="playerScore" placeholder="Player's initial score" style="color:#000">
+		<input type="submit" value="Add Player">
+	</form>
+	{{/if}}
+</template>

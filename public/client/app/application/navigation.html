@@ -1,0 +1,23 @@
+<template name="navigation">
+    <div class="pull-right">
+
+        <button id="linkHome" class="btn btn-xs btn-default">
+            <i class="glyphicon glyphicon-home"></i> venture wall
+        </button>
+
+        <button id="linkDepartments" class="btn btn-xs btn-default">
+            <i class="glyphicon glyphicon-user"></i> departments
+        </button>
+
+        <button id="linkWallOfFame" class="btn btn-xs btn-default">
+            <i class="glyphicon glyphicon-user"></i> wall of fame
+        </button>
+
+        {{#if isInRole 'admin'}}
+            <button id="linkAdmin" class="btn btn-xs btn-default">
+                <i class="glyphicon glyphicon-star"></i> administration
+            </button>
+        {{/if}}
+
+    </div>
+</template>
